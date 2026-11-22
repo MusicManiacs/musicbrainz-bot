@@ -140,6 +140,23 @@ docker run --rm -p 3000:3000 -v mbbot-data:/data \
   -e BOT_SERVICE_TOKEN -e MB_BOT_USERNAME -e MB_BOT_PASSWORD musicbrainz-bot
 ```
 
+## Published image
+
+`.github/workflows/publish.yml` publishes the image to GitHub Container Registry (no extra secrets: it logs in
+with the repo's `GITHUB_TOKEN`):
+
+| Trigger | Tags of `ghcr.io/musicmaniacs/musicbrainz-bot` |
+|---|---|
+| push to `main` | `main`, `sha-<commit>` |
+| tag `v*` | the tag (e.g. `v0.1.0`) and `latest` |
+
+To release a version, bump `version` in `package.json` and `VERSION` in `src/config.js`, then
+`git tag v0.1.1 && git push origin v0.1.1`. Deploy a version tag, not `latest` or `main`.
+
+The first publish creates the package as **private**. Because this code is open source, make it public once
+(*Package settings → Danger Zone → Change visibility*) so the server that runs it can pull it with the
+deployer's own token; otherwise give the deploying repo read access in *Manage Actions access*.
+
 ## Tests
 
 ```sh
