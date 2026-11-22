@@ -1,0 +1,20 @@
+{
+  "name": "musicbrainz-bot",
+  "version": "0.1.0",
+  "description": "MusicBrainz bot service for Music Maniacs: drives MusicBrainz with a browser (Playwright) from pre-seeded form URLs.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "smoke": "node scripts/smoke.js",
+    "record-fixtures": "node scripts/record-fixtures.js"
+  },
+  "dependencies": {
+    "playwright": "1.65.1"
+  }
+}
